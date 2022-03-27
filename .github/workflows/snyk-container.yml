@@ -43,7 +43,6 @@ jobs:
       with:
         image: ${{ env.IMAGE_TO_TEST }}
         args: --file=Dockerfile
-    - uses: garethr/snyk-to-sarif@master
     - uses: actions/upload-artifact@v2
       with:
         name: SARIF
