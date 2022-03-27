@@ -19,7 +19,7 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
   DOCKER_HUB_NAMESPACE: fundanie
-  DOCKER_HUB_REPOSITORY: daphne
+  DOCKER_HUB_REPOSITORY: ${{ github.repository.name }}
 
 
 jobs:
