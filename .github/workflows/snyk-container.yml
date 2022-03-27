@@ -19,8 +19,9 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ main ]
-  schedule:
-    - cron: '33 22 * * 3'
+
+env:
+  IMAGE_TO_TEST: ghcr.io/${{ github.repository }}
 
 jobs:
   snyk:
@@ -28,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build a Docker image
-      run: docker build -t your/image-to-test .
+      run: docker build -t ${{ env.IMAGE_TO_TEST }} .
     - name: Run Snyk to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities.
       # In this case we want to upload the issues to GitHub Code Scanning
@@ -40,7 +41,7 @@ jobs:
         # or you can signup for free at https://snyk.io/login
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        image: your/image-to-test
+        image: ${{ env.IMAGE_TO_TEST }}
         args: --file=Dockerfile
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v1
