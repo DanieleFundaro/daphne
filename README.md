@@ -5,7 +5,7 @@
 
 Docker image with daphne ASGI and python 3.9.11 that you can use as a base image for your project. Define your Dockerfile as shown below:
 
-    FROM daphne-server:latest
+    FROM daphne:latest
     
     # install dependecies
     COPY ./requirements.txt ./requirements.txt
